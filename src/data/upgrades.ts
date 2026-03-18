@@ -9,7 +9,7 @@ function deptUpgrades(deptId: DepartmentId, baseCost: number): UpgradeDefinition
       id: t1id,
       departmentId: deptId,
       name: 'Umsatz steigern I',
-      description: `Erhöht die Einnahmen der ${deptId}-Abteilung um das 2-Fache.`,
+      description: `Verdoppelt die Einnahmen der ${deptId}-Abteilung.`,
       cost: baseCost,
       effectType: 'income_multiplier',
       effectValue: 2,
@@ -19,7 +19,7 @@ function deptUpgrades(deptId: DepartmentId, baseCost: number): UpgradeDefinition
       id: t2id,
       departmentId: deptId,
       name: 'Mehr Personal II',
-      description: `+2 maximale Mitarbeiter in der ${deptId}-Abteilung.`,
+      description: `+2 maximale Mitarbeiter in dieser Abteilung.`,
       cost: baseCost * 3,
       effectType: 'max_employees_bonus',
       effectValue: 2,
@@ -30,7 +30,7 @@ function deptUpgrades(deptId: DepartmentId, baseCost: number): UpgradeDefinition
       id: t3id,
       departmentId: deptId,
       name: 'Kundenstrom III',
-      description: `Verdreifacht die Kunden pro Minute in der ${deptId}-Abteilung.`,
+      description: `Verdreifacht die Kunden pro Minute in dieser Abteilung.`,
       cost: baseCost * 10,
       effectType: 'customer_multiplier',
       effectValue: 3,
@@ -41,19 +41,19 @@ function deptUpgrades(deptId: DepartmentId, baseCost: number): UpgradeDefinition
 }
 
 export const UPGRADES: UpgradeDefinition[] = [
-  // Per-department tiers
-  ...deptUpgrades('bakery',      500),
-  ...deptUpgrades('fruit',       400),
-  ...deptUpgrades('meat',        800),
-  ...deptUpgrades('seafood',     700),
-  ...deptUpgrades('electronics', 2000),
-  ...deptUpgrades('drinks',      300),
+  // Per-department tiers (base cost scales with dept earning power)
+  ...deptUpgrades('pumps',    1000),
+  ...deptUpgrades('bakeshop',  500),
+  ...deptUpgrades('tyres',    1500),
+  ...deptUpgrades('carwash',   800),
+  ...deptUpgrades('workshop', 3000),
+  ...deptUpgrades('shop',      400),
 
   // Global upgrades
   {
     id: 'global_offline_efficiency',
     departmentId: 'global',
-    name: 'Verlängerte Öffnungszeiten',
+    name: 'Nachtbetrieb',
     description: 'Offline-Einnahmen werden 1,5× effizienter gesammelt.',
     cost: 5000,
     effectType: 'offline_efficiency',
@@ -63,18 +63,18 @@ export const UPGRADES: UpgradeDefinition[] = [
   {
     id: 'global_offline_cap',
     departmentId: 'global',
-    name: 'Größeres Lager',
+    name: 'Großes Lagertank',
     description: 'Offline-Einnahmen-Limit steigt von 3 auf 4 Stunden.',
     cost: 15000,
     effectType: 'offline_efficiency',
-    effectValue: 1,   // handled specially: adds 1h to cap
+    effectValue: 1,
     tier: 2,
     requiresUpgradeId: 'global_offline_efficiency',
   },
   {
     id: 'global_income',
     departmentId: 'global',
-    name: 'Große Eröffnung',
+    name: 'Grosse Eröffnung',
     description: 'Alle Abteilungen erzielen 10 % mehr Einnahmen.',
     cost: 50000,
     effectType: 'income_multiplier',

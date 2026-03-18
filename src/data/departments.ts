@@ -1,103 +1,103 @@
 import type { DepartmentDefinition, DepartmentId } from '../types';
 
 export const DEPARTMENTS: Record<DepartmentId, DepartmentDefinition> = {
-  bakery: {
-    id: 'bakery',
-    name: 'Bäckerei',
-    emoji: '🥐',
-    color: '#f59e0b',
-    baseCustomersPerMinute: 2,
-    maxEmployeesBase: 5,
-    products: [
-      { id: 'bread',       name: 'Weißbrot',      description: 'Frisch gebackenes Weißbrot – jeden Tag ein Muss.',        emoji: '🍞', basePrice: 0.5,  unlockLevel: 1  },
-      { id: 'croissant',   name: 'Croissant',     description: 'Butterreiches Blätterteiggebäck aus Frankreich.',         emoji: '🥐', basePrice: 1.2,  unlockLevel: 10 },
-      { id: 'cake',        name: 'Torte',         description: 'Mehrstöckige Sahnetorte – der Renner an Geburtstagen.',   emoji: '🎂', basePrice: 3.5,  unlockLevel: 25 },
-      { id: 'pastry',      name: 'Feingebäck-Box',      description: 'Handgemachte Gebäck-Spezialitäten in der edlen Box.', emoji: '🧁', basePrice: 8.0,  unlockLevel: 50 },
-      { id: 'wedding_cake', name: 'Hochzeitstorte',    description: 'Fünfstöckige Meisterwerk-Torte. Der Preis ist es wert.', emoji: '🎀', basePrice: 25.0, unlockLevel: 100},
-    ],
-  },
-
-  fruit: {
-    id: 'fruit',
-    name: 'Obst & Gemüse',
-    emoji: '🍎',
-    color: '#10b981',
-    baseCustomersPerMinute: 3,
-    maxEmployeesBase: 5,
-    products: [
-      { id: 'apple',      name: 'Äpfel',         description: 'Knackige heimische Äpfel aus regionalem Anbau.',           emoji: '🍎', basePrice: 0.3,  unlockLevel: 1  },
-      { id: 'banana',     name: 'Bananenstaude', description: 'Süße Bananen – beliebt bei Groß und Klein.',               emoji: '🍌', basePrice: 0.8,  unlockLevel: 8  },
-      { id: 'berries',    name: 'Beeren-Mix',    description: 'Frische Erdbeeren, Heidelbeeren und Himbeeren.',            emoji: '🍓', basePrice: 2.5,  unlockLevel: 20 },
-      { id: 'tropical',   name: 'Tropical-Box',  description: 'Exotische Früchte aus aller Welt, frisch importiert.',     emoji: '🥭', basePrice: 7.0,  unlockLevel: 40 },
-      { id: 'exotic',     name: 'Luxus-Obst-Box',  description: 'Handverlesene Raritäten: Drachenfrucht, Rambutan & Co.', emoji: '🍍', basePrice: 20.0, unlockLevel: 80 },
-    ],
-  },
-
-  meat: {
-    id: 'meat',
-    name: 'Fleisch',
-    emoji: '🥩',
-    color: '#ef4444',
-    baseCustomersPerMinute: 1.5,
-    maxEmployeesBase: 4,
-    products: [
-      { id: 'sausages',   name: 'Bratwurst',     description: 'Saftige Bratwurst vom heimischen Metzger.',                emoji: '🌭', basePrice: 2.0,  unlockLevel: 1  },
-      { id: 'chicken',    name: 'Hähnchen',      description: 'Frisches Hähnchenfleisch aus artgerechter Haltung.',       emoji: '🍗', basePrice: 4.5,  unlockLevel: 12 },
-      { id: 'beef',       name: 'Rindersteak',   description: 'Premium-Rindersteak aus Weidehaltung, perfekt zum Grillen.',emoji: '🥩', basePrice: 12.0, unlockLevel: 30 },
-      { id: 'premium',    name: 'Premium-Cut',   description: 'Ausgewählte Edelstücke vom Angus-Rind.',                   emoji: '🍖', basePrice: 30.0, unlockLevel: 60 },
-      { id: 'wagyu',      name: 'Wagyu-Fleisch', description: 'Köstliches Rindfleisch. Schon der Name lässt den Preis in die Höhe schnellen.', emoji: '🥩', basePrice: 90.0, unlockLevel: 120},
-    ],
-  },
-
-  seafood: {
-    id: 'seafood',
-    name: 'Meeresfrüchte',
-    emoji: '🦞',
-    color: '#3b82f6',
-    baseCustomersPerMinute: 1.2,
-    maxEmployeesBase: 4,
-    products: [
-      { id: 'sardines',   name: 'Sardinen',      description: 'Kleine, aber feine Fische direkt vom Atlantik.',           emoji: '🐟', basePrice: 1.5,  unlockLevel: 1  },
-      { id: 'salmon',     name: 'Lachs',         description: 'Norwegischer Wildlachs – reich an Omega-3.',               emoji: '🐠', basePrice: 5.0,  unlockLevel: 15 },
-      { id: 'lobster',    name: 'Hummer',        description: 'Lebendiger Hummer aus dem Atlantik, direkt zum Kochen.',   emoji: '🦞', basePrice: 15.0, unlockLevel: 35 },
-      { id: 'crab',       name: 'Königskrabbe',  description: 'Riesige Königskrabbe – ein Festessen für die Familie.',    emoji: '🦀', basePrice: 45.0, unlockLevel: 70 },
-      { id: 'tuna',       name: 'Thunfisch-Sashimi', description: 'Premium-Thunfisch in Sashimi-Qualität, direkt aus Japan.', emoji: '🍣', basePrice: 120.0, unlockLevel: 140},
-    ],
-  },
-
-  electronics: {
-    id: 'electronics',
-    name: 'Elektronik',
-    emoji: '💻',
-    color: '#8b5cf6',
-    baseCustomersPerMinute: 0.8,
-    maxEmployeesBase: 3,
-    products: [
-      { id: 'batteries',  name: 'Batterien-Set', description: 'AA- und AAA-Batterien im praktischen Vorteilspack.',       emoji: '🔋', basePrice: 3.0,  unlockLevel: 1  },
-      { id: 'headphones', name: 'Kopfhörer',     description: 'Kabellose Kopfhörer mit aktiver Geräuschunterdrückung.',   emoji: '🎧', basePrice: 20.0, unlockLevel: 20 },
-      { id: 'tablet',     name: 'Tablet',        description: 'Modernes Tablet mit großem Display für Arbeit und Freizeit.',emoji: '📱', basePrice: 150.0,unlockLevel: 50 },
-      { id: 'laptop',     name: 'Laptop',        description: 'Leistungsstarker Laptop für Office und Gaming.',            emoji: '💻', basePrice: 500.0,unlockLevel: 100},
-      { id: 'tv',         name: 'Smart-TV 85"',  description: 'Riesiger OLED-Fernseher mit 8K-Auflösung und Smart-OS.',   emoji: '📺', basePrice: 1200.0,unlockLevel:200},
-    ],
-  },
-
-  drinks: {
-    id: 'drinks',
-    name: 'Getränke',
-    emoji: '🥤',
-    color: '#06b6d4',
+  pumps: {
+    id: 'pumps',
+    name: 'Zapfsäulen',
+    emoji: '⛽',
+    color: '#f97316',
     baseCustomersPerMinute: 4,
     maxEmployeesBase: 6,
     products: [
-      { id: 'water',      name: 'Mineralwasser', description: 'Frisches Quellwasser aus den Alpen, still oder sprudelnd.', emoji: '💧', basePrice: 0.2,  unlockLevel: 1  },
-      { id: 'juice',      name: 'Fruchtsaft',    description: '100 % Direktsaft, ohne Zusätze – wie frisch gepresst.',     emoji: '🍊', basePrice: 0.6,  unlockLevel: 5  },
-      { id: 'soda',       name: 'Softdrink-Pack',  description: '12er-Pack Softdrinks – für Partys und gemütliche Abende.', emoji: '🥤', basePrice: 1.8,  unlockLevel: 15 },
-      { id: 'energy',     name: 'Energy Drink',  description: 'Power-Drink mit Taurin & Koffein – gibt Extra-Energie.',    emoji: '⚡', basePrice: 4.0,  unlockLevel: 30 },
-      { id: 'wine',       name: 'Premium-Wein',  description: 'Edles Cru-Classé aus Bordeaux, für besondere Anlässe.',    emoji: '🍷', basePrice: 15.0, unlockLevel: 60 },
+      { id: 'e10',      name: 'Super E10',      description: 'Der günstige Alltagskraftstoff. Läuft in fast jedem Tank.',      emoji: '🟢', basePrice: 1.85,  unlockLevel: 1   },
+      { id: 'super95',  name: 'Super Plus',     description: 'Mehr Oktanzahl für mehr Leistung – Fahrer schätzen es.',        emoji: '🟡', basePrice: 2.05,  unlockLevel: 10  },
+      { id: 'diesel',   name: 'Diesel',         description: 'Unverzichtbar für LKW, Vans und viele Pkw.',                    emoji: '⚫', basePrice: 1.95,  unlockLevel: 20  },
+      { id: 'v_power',  name: 'V-Power Racing', description: 'Premium-Kraftstoff für Leistungsmotoren. Reinigt den Motor.',   emoji: '🔴', basePrice: 2.35,  unlockLevel: 50  },
+      { id: 'hydrogen', name: 'Wasserstoff H₂', description: 'Zukunftstechnologie an der Säule. Emissionsfrei tanken.',       emoji: '💧', basePrice: 12.0,  unlockLevel: 120 },
+    ],
+  },
+
+  bakeshop: {
+    id: 'bakeshop',
+    name: 'Backshop',
+    emoji: '🥐',
+    color: '#f59e0b',
+    baseCustomersPerMinute: 3,
+    maxEmployeesBase: 4,
+    products: [
+      { id: 'pretzel',    name: 'Brezel',          description: 'Knusprig gebackene Laugenbrezel – der Klassiker an der Tanke.', emoji: '🥨', basePrice: 1.20,  unlockLevel: 1   },
+      { id: 'sandwich',   name: 'Belegtes Brötchen', description: 'Frisch belegt mit Käse oder Schinken – schnelles Frühstück.',  emoji: '🥪', basePrice: 2.80, unlockLevel: 8   },
+      { id: 'croissant',  name: 'Butter-Croissant',  description: 'Buttrig, flockig, frisch aus dem Ofen – zum Espresso ein Muss.', emoji: '🥐', basePrice: 2.20, unlockLevel: 18  },
+      { id: 'hotdog',     name: 'Hot Dog',            description: 'Würstchen im Brötchen mit Senf und Ketchup – Klassiker.',       emoji: '🌭', basePrice: 3.90, unlockLevel: 40  },
+      { id: 'pizza_slice', name: 'Pizza-Slice',       description: 'Große Scheibe Pizza, frisch aufgebacken – Highlight des Shops.', emoji: '🍕', basePrice: 5.50, unlockLevel: 90  },
+    ],
+  },
+
+  tyres: {
+    id: 'tyres',
+    name: 'Reifenservice',
+    emoji: '🔧',
+    color: '#64748b',
+    baseCustomersPerMinute: 1,
+    maxEmployeesBase: 3,
+    products: [
+      { id: 'pressure',   name: 'Reifendruckcheck', description: 'Schneller Check und Auffüllen – sicher auf der Straße.',    emoji: '🔵', basePrice: 2.0,   unlockLevel: 1   },
+      { id: 'nitrogen',   name: 'Stickstoff-Füllung', description: 'Stickstoff hält den Druck länger konstant – beliebt bei Vielfahrern.', emoji: '💨', basePrice: 8.0, unlockLevel: 12  },
+      { id: 'tyre_swap',  name: 'Reifenwechsel',    description: 'Sommer auf Winter (oder umgekehrt) – schnell und günstig.', emoji: '🔄', basePrice: 35.0,  unlockLevel: 28  },
+      { id: 'balancing',  name: 'Auswuchten',       description: 'Präzises Auswuchten aller vier Räder – kein Vibrieren mehr.', emoji: '⚖️', basePrice: 60.0, unlockLevel: 55  },
+      { id: 'run_flat',   name: 'Run-Flat-Montage', description: 'Hochwertige Run-Flat-Reifen: fahr auch ohne Luft weiter.',  emoji: '🏎️', basePrice: 180.0, unlockLevel: 130 },
+    ],
+  },
+
+  carwash: {
+    id: 'carwash',
+    name: 'Autowäsche',
+    emoji: '🚿',
+    color: '#3b82f6',
+    baseCustomersPerMinute: 2,
+    maxEmployeesBase: 4,
+    products: [
+      { id: 'basic_wash',   name: 'Schnellwäsche',   description: 'Außenwäsche in 3 Minuten – sauber für den Alltag.',       emoji: '💦', basePrice: 6.0,   unlockLevel: 1   },
+      { id: 'comfort_wash', name: 'Komfort-Wäsche',  description: 'Mit Unterbodenspülung und Heißlufttrocknung.',             emoji: '🫧', basePrice: 12.0,  unlockLevel: 10  },
+      { id: 'premium_wash', name: 'Premium-Wäsche',  description: 'Schaumwäsche + Felgenreiniger + Innenreinigung.',          emoji: '✨', basePrice: 20.0,  unlockLevel: 25  },
+      { id: 'full_wash',    name: 'Vollwäsche',      description: 'Von innen und außen strahlend sauber – Rundum-Service.',   emoji: '🌟', basePrice: 38.0,  unlockLevel: 60  },
+      { id: 'detailing',    name: 'Profi-Detailing', description: 'Hochglanzpolitur + Keramikversiegelung – wie neu!',        emoji: '💎', basePrice: 150.0, unlockLevel: 140 },
+    ],
+  },
+
+  workshop: {
+    id: 'workshop',
+    name: 'Werkstatt',
+    emoji: '🔩',
+    color: '#8b5cf6',
+    baseCustomersPerMinute: 0.7,
+    maxEmployeesBase: 3,
+    products: [
+      { id: 'oil_change',   name: 'Ölwechsel',        description: 'Motoröl und Filter wechseln – Grundlage jeder Wartung.',  emoji: '🛢️', basePrice: 45.0,  unlockLevel: 1   },
+      { id: 'brake_check',  name: 'Bremscheck',       description: 'Bremsen prüfen und justieren – für maximale Sicherheit.', emoji: '🔴', basePrice: 80.0,  unlockLevel: 15  },
+      { id: 'tuev_prep',    name: 'TÜV-Vorbereitung', description: 'Alles gecheckt, damit der TÜV problemlos klappt.',        emoji: '📋', basePrice: 120.0, unlockLevel: 35  },
+      { id: 'engine_tune',  name: 'Motor-Tuning',     description: 'Leistungssteigerung durch professionelles Chiptuning.',   emoji: '⚡', basePrice: 350.0, unlockLevel: 75  },
+      { id: 'full_service', name: 'Vollservice',      description: 'Komplettinspektion nach Herstellervorgaben – Premium.',   emoji: '🏆', basePrice: 900.0, unlockLevel: 160 },
+    ],
+  },
+
+  shop: {
+    id: 'shop',
+    name: 'Tankstellenshop',
+    emoji: '🛒',
+    color: '#10b981',
+    baseCustomersPerMinute: 5,
+    maxEmployeesBase: 5,
+    products: [
+      { id: 'snacks',     name: 'Snacks & Chips',  description: 'Chips, Gummibärchen, Schokolade – für den kleinen Hunger.',   emoji: '🍫', basePrice: 1.50,  unlockLevel: 1   },
+      { id: 'drinks',     name: 'Kaltgetränke',    description: 'Wasser, Cola, Energydrinks – immer kalt im Kühlregal.',       emoji: '🥤', basePrice: 2.50,  unlockLevel: 6   },
+      { id: 'coffee',     name: 'Kaffee to go',    description: 'Frisch gebrühter Kaffee aus der Profi-Maschine – unverzichtbar.', emoji: '☕', basePrice: 3.20, unlockLevel: 15  },
+      { id: 'motor_oil',  name: 'Motoröl & Pflege', description: 'Markenöle und Pflegemittel im Regal – Mitnahme-Geschäft pur.', emoji: '🛢️', basePrice: 14.0, unlockLevel: 35  },
+      { id: 'gift_card',  name: 'Geschenkkarten',  description: 'Tankkarten und Geschenkgutscheine – hohe Marge, wenig Arbeit.', emoji: '🎁', basePrice: 50.0, unlockLevel: 80  },
     ],
   },
 };
 
 export const DEPARTMENT_IDS: DepartmentId[] = [
-  'bakery', 'fruit', 'meat', 'seafood', 'electronics', 'drinks'
+  'pumps', 'bakeshop', 'tyres', 'carwash', 'workshop', 'shop'
 ];

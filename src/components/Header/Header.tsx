@@ -20,7 +20,7 @@ export function Header() {
   return (
     <header className="header">
       <div className="header-left">
-        <span className="header-store-name">🏪 Supermarkt</span>
+        <span className="header-store-name">⛽ Tankstelle</span>
       </div>
       <div className="header-right">
         <div className={`header-money ${pulse ? 'money-pulse' : ''}`}>

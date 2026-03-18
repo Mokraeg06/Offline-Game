@@ -1,12 +1,12 @@
 // ─── Static Data Types ───────────────────────────────────────────────────────
 
 export type DepartmentId =
-  | 'bakery'
-  | 'fruit'
-  | 'meat'
-  | 'seafood'
-  | 'electronics'
-  | 'drinks';
+  | 'pumps'
+  | 'bakeshop'
+  | 'tyres'
+  | 'carwash'
+  | 'workshop'
+  | 'shop';
 
 export interface ProductDefinition {
   id: string;

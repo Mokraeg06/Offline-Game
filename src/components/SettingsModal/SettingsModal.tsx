@@ -69,7 +69,7 @@ export function SettingsScreen() {
       </div>
 
       <div className="settings-footer">
-        Idle Supermarkt Tycoon · v1.0
+        Idle Tankstellen Tycoon · v1.0
       </div>
     </div>
   );
