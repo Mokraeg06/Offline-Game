@@ -1,0 +1,100 @@
+.dept-card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  border-left: 4px solid transparent;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dept-card:active {
+  transform: scale(0.97);
+  background: var(--color-bg-card-hover);
+}
+
+.dept-card-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.dept-card-emoji {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.dept-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.dept-card-name {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dept-card-product {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dept-card-level {
+  font-size: var(--text-xs);
+  font-weight: 800;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dept-card-earnings {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dept-card-money {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-money);
+}
+
+.dept-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+}
+
+.dept-card-emp {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.dept-hire-btn {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-hire);
+  border-radius: var(--radius-full);
+  padding: 4px 10px;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.dept-hire-btn:disabled {
+  background: rgba(255,255,255,0.1) !important;
+  color: var(--color-text-muted);
+}
