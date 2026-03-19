@@ -200,6 +200,24 @@ No test runner is configured. There are no unit or integration tests.
 
 ---
 
+## Mandatory Workflow for AI Assistants
+
+### 1. Plan before coding
+Before writing any code, write a short implementation plan (bullet list of steps). Only start coding after the plan is clear. For multi-file changes, list every file that will be touched.
+
+### 2. Error loop prevention
+- **Read `ERRORS.md` at the start of every session.**
+- If you encounter a bug or use a wrong approach, append a new entry to `ERRORS.md` using the format defined there.
+- Never attempt the same failed approach twice in one session.
+
+### 3. Version and changelog discipline
+- The authoritative version string lives in `src/version.ts` → `APP_VERSION`.
+- Every user-visible change must add an entry to `CHANGELOG.txt` under a new `X.XX.XX` version line.
+- Version format: `Major.Minor.Patch` (e.g. `1.02.00`). Increment Minor for new features, Patch for fixes.
+- The Settings screen footer reads `APP_VERSION` automatically — no manual string to update there.
+
+---
+
 ## Key Conventions for AI Assistants
 
 1. **TypeScript types first** — all new data shapes belong in `src/types/index.ts`. Never use `any`.

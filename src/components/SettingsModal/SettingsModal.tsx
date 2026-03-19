@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useGame } from '../../context/GameContext';
 import { formatMoney } from '../../utils/formatting';
+import { APP_VERSION } from '../../version';
 import './SettingsModal.css';
 
 export function SettingsScreen() {
@@ -69,7 +70,7 @@ export function SettingsScreen() {
       </div>
 
       <div className="settings-footer">
-        Idle Tankstellen Tycoon · v1.0
+        Idle Tankstellen Tycoon · v{APP_VERSION}
       </div>
     </div>
   );
