@@ -1,0 +1,18 @@
+CHANGELOG — Idle Tankstellen Tycoon
+====================================
+Format: X.XX.XX  (Major.Minor.Patch)
+
+1.01.00  2026-03-19
+  - Added CLAUDE.md with comprehensive AI-assistant documentation
+  - Added CHANGELOG.txt (this file) with versioned history
+  - Added APP_VERSION constant; version number now displayed in Einstellungen
+  - Added plan-first + error-loop-prevention conventions to CLAUDE.md
+
+1.00.00  2026-03-18
+  - Initial release: Idle Tankstellen Tycoon
+  - 6 departments: Zapfsäulen, Backshop, Reifenservice, Autowäsche, Werkstatt, Tankstellenshop
+  - Hire employees, upgrade department levels, unlock new products
+  - Research screen with per-department and global upgrades (3-tier chain)
+  - Offline earnings (50 % efficiency, 3 h cap) with modal on load
+  - Auto-save every 30 s to localStorage
+  - GitHub Actions deploy to GitHub Pages
