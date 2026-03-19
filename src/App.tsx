@@ -6,6 +6,7 @@ import { DepartmentModal } from './components/DepartmentModal/DepartmentModal';
 import { ResearchScreen } from './components/ResearchScreen/ResearchScreen';
 import { SettingsScreen } from './components/SettingsModal/SettingsModal';
 import { OfflineEarningsModal } from './components/OfflineEarningsModal/OfflineEarningsModal';
+import { ToastContainer } from './components/shared/Toast';
 import './components/NavBar/NavBar.css';
 
 function GameUI() {
@@ -17,9 +18,11 @@ function GameUI() {
       <Header />
 
       <main className="app-content">
-        {activeTab === 'store'    && <DepartmentGrid />}
-        {activeTab === 'research' && <ResearchScreen />}
-        {activeTab === 'settings' && <SettingsScreen />}
+        <div key={activeTab} className="tab-content">
+          {activeTab === 'store'    && <DepartmentGrid />}
+          {activeTab === 'research' && <ResearchScreen />}
+          {activeTab === 'settings' && <SettingsScreen />}
+        </div>
       </main>
 
       {/* Bottom nav */}
@@ -50,6 +53,9 @@ function GameUI() {
       {/* Modals */}
       <DepartmentModal />
       <OfflineEarningsModal />
+
+      {/* Toasts */}
+      <ToastContainer toasts={uiState.toasts} />
     </>
   );
 }

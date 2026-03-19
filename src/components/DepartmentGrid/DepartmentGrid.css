@@ -1,3 +1,26 @@
+.dept-next-goal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: var(--space-md) var(--space-md) 0;
+  padding: 10px 14px;
+  background: rgba(250, 204, 21, 0.08);
+  border: 1px solid rgba(250, 204, 21, 0.25);
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+.dept-next-goal strong {
+  color: var(--color-text-primary);
+}
+
+.dept-next-goal-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
 .dept-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

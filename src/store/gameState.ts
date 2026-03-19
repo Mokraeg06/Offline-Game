@@ -4,6 +4,7 @@ import { UPGRADES } from '../data/upgrades';
 
 export const SAVE_KEY = 'supermarket_idle_v1';
 export const SCHEMA_VERSION = 1;
+export const PRESTIGE_THRESHOLD = 500_000;
 
 export function createInitialState(): GameState {
   const departments = {} as GameState['departments'];
@@ -33,8 +34,9 @@ export function createInitialState(): GameState {
     lastTick: Date.now(),
     departments,
     globalUpgrades: globalUpgradeIds,
-    offlineEarningsCap: 3,
+    offlineEarningsCap: 4,
     prestigeCount: 0,
+    achievements: [],
     settings: {
       tickRateMs: 1000,
       autoSaveIntervalMs: 30_000,

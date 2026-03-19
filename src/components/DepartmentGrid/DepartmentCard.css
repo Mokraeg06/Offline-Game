@@ -98,3 +98,15 @@
   background: rgba(255,255,255,0.1) !important;
   color: var(--color-text-muted);
 }
+
+.dept-card-badges {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.dept-rank-badge {
+  font-size: 14px;
+  line-height: 1;
+}

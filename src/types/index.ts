@@ -71,6 +71,7 @@ export interface GameState {
   globalUpgrades: DepartmentUpgradeState[];
   offlineEarningsCap: number; // hours
   prestigeCount: number;
+  achievements: string[];
   settings: {
     tickRateMs: number;
     autoSaveIntervalMs: number;
@@ -104,12 +105,19 @@ export type ModalType =
 
 export type NavTab = 'store' | 'research' | 'settings';
 
+export interface Toast {
+  id: string;
+  message: string;
+  emoji: string;
+}
+
 export interface UIState {
   activeModal: ModalType;
   activeDepartmentId: DepartmentId | null;
   offlineEarningsAmount: number;
   offlineEarningsDurationMs: number;
   activeTab: NavTab;
+  toasts: Toast[];
 }
 
 // ─── Actions ──────────────────────────────────────────────────────────────────
@@ -121,4 +129,5 @@ export type GameAction =
   | { type: 'PURCHASE_UPGRADE'; payload: { upgradeId: string } }
   | { type: 'APPLY_OFFLINE_EARNINGS'; payload: { amount: number } }
   | { type: 'LOAD_STATE'; payload: { state: GameState } }
-  | { type: 'RESET_GAME' };
+  | { type: 'RESET_GAME' }
+  | { type: 'PRESTIGE' };

@@ -6,6 +6,7 @@ import { levelScaling, hireCost, upgradeCost } from './levelMath';
 
 export function computeDepartmentEarnings(
   deptState: DepartmentState,
+  prestigeCount: number = 0,
 ): DepartmentEarnings {
   const def = DEPARTMENTS[deptState.id];
 
@@ -17,7 +18,9 @@ export function computeDepartmentEarnings(
   const nextProduct = def.products.find(p => p.unlockLevel > deptState.level) ?? null;
 
   // Collect purchased upgrade effects for this department + global
-  let incomeMultiplier = 1;
+  // Prestige bonus: +15% global income per prestige level
+  const prestigeMultiplier = 1 + prestigeCount * 0.15;
+  let incomeMultiplier = prestigeMultiplier;
   let customerMultiplier = 1;
   let maxEmpBonus = 0;
 
@@ -64,7 +67,7 @@ export function computeDepartmentEarnings(
 export function computeTotalIncomePerMinute(state: GameState): number {
   let total = 0;
   for (const id of Object.keys(state.departments) as DepartmentId[]) {
-    total += computeDepartmentEarnings(state.departments[id]).moneyPerMinute;
+    total += computeDepartmentEarnings(state.departments[id], state.prestigeCount).moneyPerMinute;
   }
   return total;
 }
@@ -79,7 +82,7 @@ export function computeOfflineEarnings(
   const hasCapUpgrade = state.globalUpgrades.some(
     u => u.upgradeId === 'global_offline_cap' && u.purchased
   );
-  const capHours = state.offlineEarningsCap + (hasCapUpgrade ? 1 : 0);
+  const capHours = state.offlineEarningsCap + (hasCapUpgrade ? 1 : 0); // base 4h, +1h with upgrade = 5h
   const capMs = capHours * 60 * 60 * 1000;
   const durationMs = Math.min(elapsed, capMs);
   const durationMinutes = durationMs / 60_000;
@@ -88,7 +91,7 @@ export function computeOfflineEarnings(
   const hasEfficiencyUpgrade = state.globalUpgrades.some(
     u => u.upgradeId === 'global_offline_efficiency' && u.purchased
   );
-  const efficiency = hasEfficiencyUpgrade ? 0.75 : 0.5;
+  const efficiency = hasEfficiencyUpgrade ? 0.85 : 0.65;
 
   const incomePerMin = computeTotalIncomePerMinute(state);
   const amount = incomePerMin * durationMinutes * efficiency;
