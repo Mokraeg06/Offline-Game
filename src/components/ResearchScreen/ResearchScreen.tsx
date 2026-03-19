@@ -2,8 +2,21 @@ import { useGame } from '../../context/GameContext';
 import { UPGRADES } from '../../data/upgrades';
 import { DEPARTMENTS, DEPARTMENT_IDS } from '../../data/departments';
 import { formatMoney } from '../../utils/formatting';
-import type { DepartmentId } from '../../types';
+import type { DepartmentId, UpgradeDefinition } from '../../types';
 import './ResearchScreen.css';
+
+function effectBadge(upg: UpgradeDefinition): { label: string; color: string } {
+  switch (upg.effectType) {
+    case 'income_multiplier':
+      return { label: `💰 ×${upg.effectValue} Einnahmen`, color: '#4ade80' };
+    case 'customer_multiplier':
+      return { label: `👥 ×${upg.effectValue} Kunden/min`, color: '#60a5fa' };
+    case 'max_employees_bonus':
+      return { label: `👤 +${upg.effectValue} Mitarbeiter-Slots`, color: '#c084fc' };
+    case 'offline_efficiency':
+      return { label: `⏰ Offline-Bonus`, color: '#f59e0b' };
+  }
+}
 
 export function ResearchScreen() {
   const { state, dispatch } = useGame();
@@ -39,6 +52,7 @@ export function ResearchScreen() {
           const unlocked = isUnlocked(upg.id, deptId);
           const canAfford = state.money >= upg.cost;
           const canBuy = !purchased && unlocked && canAfford;
+          const badge = effectBadge(upg);
 
           return (
             <div
@@ -51,6 +65,12 @@ export function ResearchScreen() {
                   {upg.name}
                 </div>
                 <div className="research-card-desc">{upg.description}</div>
+                <div
+                  className="research-effect-badge"
+                  style={{ color: badge.color, borderColor: badge.color }}
+                >
+                  {badge.label}
+                </div>
                 {!unlocked && upg.requiresUpgradeId && (
                   <div className="research-card-req">
                     🔒 Benötigt: {UPGRADES.find(u => u.id === upg.requiresUpgradeId)?.name}

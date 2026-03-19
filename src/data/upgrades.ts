@@ -64,7 +64,7 @@ export const UPGRADES: UpgradeDefinition[] = [
     id: 'global_offline_cap',
     departmentId: 'global',
     name: 'Großes Lagertank',
-    description: 'Offline-Einnahmen-Limit steigt von 3 auf 4 Stunden.',
+    description: 'Offline-Einnahmen-Limit steigt von 4 auf 5 Stunden.',
     cost: 15000,
     effectType: 'offline_efficiency',
     effectValue: 1,

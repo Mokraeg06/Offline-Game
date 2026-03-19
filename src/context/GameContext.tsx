@@ -6,12 +6,14 @@ import React, {
   useRef,
   useEffect,
   useMemo,
+  useCallback,
 } from 'react';
-import type { GameState, GameAction, UIState, DepartmentId } from '../types';
+import type { GameState, GameAction, UIState, DepartmentId, Toast } from '../types';
 import { gameReducer } from '../store/gameReducer';
 import { createInitialState } from '../store/gameState';
 import { saveGame, loadGame, clearSave } from '../store/persistence';
 import { computeDepartmentEarnings, computeTotalIncomePerMinute } from '../utils/earnings';
+import { ACHIEVEMENTS } from '../data/achievements';
 
 const INITIAL_UI: UIState = {
   activeModal: null,
@@ -19,6 +21,7 @@ const INITIAL_UI: UIState = {
   offlineEarningsAmount: 0,
   offlineEarningsDurationMs: 0,
   activeTab: 'store',
+  toasts: [],
 };
 
 interface GameContextValue {
@@ -29,6 +32,8 @@ interface GameContextValue {
   openDepartment: (id: DepartmentId) => void;
   closeModal: () => void;
   resetGame: () => void;
+  prestige: () => void;
+  addToast: (toast: Omit<Toast, 'id'>) => void;
   totalIncomePerMinute: number;
 }
 
@@ -42,13 +47,30 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const stateRef = useRef(state);
   useEffect(() => { stateRef.current = state; }, [state]);
 
+  // Track previous achievements to detect newly unlocked ones
+  const prevAchievementsRef = useRef<string[]>(state.achievements);
+
+  // Watch for newly unlocked achievements and show toasts
+  useEffect(() => {
+    const prev = prevAchievementsRef.current;
+    const newOnes = state.achievements.filter(id => !prev.includes(id));
+    if (newOnes.length > 0) {
+      newOnes.forEach(id => {
+        const def = ACHIEVEMENTS.find(a => a.id === id);
+        if (def) {
+          addToast({ message: def.name, emoji: def.emoji });
+        }
+      });
+    }
+    prevAchievementsRef.current = state.achievements;
+  }, [state.achievements]); // eslint-disable-line react-hooks/exhaustive-deps
+
   // Load save & offline earnings on mount
   useEffect(() => {
     const loaded = loadGame();
     if (loaded) {
       dispatch({ type: 'LOAD_STATE', payload: { state: loaded.state } });
       if (loaded.offlineAmount > 1) {
-        // Apply offline earnings immediately, show modal
         dispatch({ type: 'APPLY_OFFLINE_EARNINGS', payload: { amount: loaded.offlineAmount } });
         setUIState(prev => ({
           ...prev,
@@ -83,6 +105,17 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     [state]
   );
 
+  const addToast = useCallback((toast: Omit<Toast, 'id'>) => {
+    const id = `${Date.now()}-${Math.random()}`;
+    setUIState(prev => ({
+      ...prev,
+      toasts: [...prev.toasts.slice(-2), { ...toast, id }], // max 3 at once
+    }));
+    setTimeout(() => {
+      setUIState(prev => ({ ...prev, toasts: prev.toasts.filter(t => t.id !== id) }));
+    }, 3000);
+  }, []);
+
   const openDepartment = (id: DepartmentId) => {
     setUIState(prev => ({ ...prev, activeModal: 'department', activeDepartmentId: id }));
   };
@@ -97,10 +130,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     setUIState(INITIAL_UI);
   };
 
+  const prestige = () => {
+    dispatch({ type: 'PRESTIGE' });
+  };
+
   return (
     <GameContext.Provider value={{
       state, dispatch, uiState, setUIState,
-      openDepartment, closeModal, resetGame,
+      openDepartment, closeModal, resetGame, prestige, addToast,
       totalIncomePerMinute,
     }}>
       {children}
@@ -118,7 +155,7 @@ export function useGame(): GameContextValue {
 export function useDepartmentEarnings(id: DepartmentId) {
   const { state } = useGame();
   return useMemo(
-    () => computeDepartmentEarnings(state.departments[id]),
-    [state.departments[id]]  // eslint-disable-line react-hooks/exhaustive-deps
+    () => computeDepartmentEarnings(state.departments[id], state.prestigeCount),
+    [state.departments[id], state.prestigeCount]  // eslint-disable-line react-hooks/exhaustive-deps
   );
 }

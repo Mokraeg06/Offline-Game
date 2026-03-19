@@ -73,7 +73,7 @@ function DepartmentModalContent({ deptId, onClose }: { deptId: import('../../typ
       {/* Stats bars */}
       <div className="dept-modal-stats">
         <div className="dept-modal-stat dept-modal-stat-green">
-          <span className="dept-modal-stat-label">GESAMTPRODUKTW ERT</span>
+          <span className="dept-modal-stat-label">GESAMTPRODUKT WERT</span>
           <span className="dept-modal-stat-val">💰 {formatMoney(earn.totalProductValue)}</span>
         </div>
         <div className="dept-modal-stat dept-modal-stat-blue">
@@ -125,11 +125,11 @@ function DepartmentModalContent({ deptId, onClose }: { deptId: import('../../typ
           {def.products.map((product, i) => {
             const isUnlocked = product.unlockLevel <= deptState.level;
             const isCurrent = product.id === earn.currentProduct.id;
-            const _isNext = earn.nextProduct?.id === product.id; void _isNext;
+            const isNext = earn.nextProduct?.id === product.id;
             return (
               <div key={product.id} className="dept-modal-timeline-item">
                 <div
-                  className={`dept-modal-timeline-circle ${isCurrent ? 'current' : ''} ${isUnlocked ? 'unlocked' : 'locked'}`}
+                  className={`dept-modal-timeline-circle ${isCurrent ? 'current' : ''} ${isNext ? 'next' : ''} ${isUnlocked ? 'unlocked' : 'locked'}`}
                   style={isCurrent ? { borderColor: def.color } : undefined}
                 >
                   <span className="dept-modal-timeline-emoji">
@@ -140,7 +140,9 @@ function DepartmentModalContent({ deptId, onClose }: { deptId: import('../../typ
                   style={isCurrent ? { color: def.color } : undefined}>
                   {product.unlockLevel}
                 </div>
-                <div className="dept-modal-timeline-mult">💰×5</div>
+                <div className="dept-modal-timeline-mult">
+                  💰×{(product.basePrice / def.products[0].basePrice).toFixed(1)}
+                </div>
                 {i < def.products.length - 1 && (
                   <div className={`dept-modal-timeline-line ${isUnlocked ? 'line-unlocked' : ''}`} />
                 )}
