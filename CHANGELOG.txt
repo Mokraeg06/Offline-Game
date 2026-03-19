@@ -2,6 +2,9 @@ CHANGELOG — Idle Tankstellen Tycoon
 ====================================
 Format: X.XX.XX  (Major.Minor.Patch)
 
+1.01.01  2026-03-19
+  - Added ErrorBoundary: shows error message instead of blank white page on crash
+
 1.01.00  2026-03-19
   - Added CLAUDE.md with comprehensive AI-assistant documentation
   - Added CHANGELOG.txt (this file) with versioned history
